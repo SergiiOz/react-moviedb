@@ -12,6 +12,7 @@ import {
   //   API_KEY,
   IMAGE_BASE_URL,
   BACKDROP_SIZE,
+  POSTER_SIZE,
   //   POSTER_SIZE,
   //   REQUEST_TOKEN_URL,
   //   LOGIN_URL,
@@ -21,6 +22,8 @@ import {
 //Components
 import HeroImage from './HeroImage/HeroImage';
 import Grid from './Grid/Grid';
+import Thumb from './Thumb/Thumb';
+import Spinner from './Spiner/Spinner';
 
 //Hook
 import { useHomeFetch } from '../hooks/useHomeFetch';
@@ -44,9 +47,20 @@ const Home = () => {
       {/* GRID */}
       <Grid header="Popular Movie">
         {state.results.map((movie) => (
-          <div key={movie.id}>{movie.title}</div>
+          // <div key={movie.id}>{movie.title}</div>
+          <Thumb
+            key={movie.id}
+            clickable={true}
+            image={
+              movie.poster_path
+                ? IMAGE_BASE_URL + POSTER_SIZE + movie.poster_path
+                : NoImage
+            }
+            movieId={movie.id}
+          />
         ))}
       </Grid>
+      <Spinner />
     </React.Fragment>
   );
 };
