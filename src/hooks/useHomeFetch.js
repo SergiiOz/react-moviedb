@@ -13,9 +13,13 @@ const iniialState = {
 
 //Custom Hooks useHomeFetch
 export const useHomeFetch = () => {
-  const [state, seState] = useState(iniialState);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [state, setState] = useState(iniialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  console.log(searchTerm);
 
   //fetch movies list
   const fetchMovies = async (page, searchTerm = '') => {
@@ -26,7 +30,7 @@ export const useHomeFetch = () => {
       const movies = await API.fetchMovies(searchTerm, page);
       console.log(movies);
 
-      seState((prev) => ({
+      setState((prev) => ({
         ...movies,
         results:
           page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
@@ -39,10 +43,19 @@ export const useHomeFetch = () => {
 
   console.log(state);
 
-  //initial render
+  //initial & search
   useEffect(() => {
-    fetchMovies(1);
-  }, []);
+    setState(iniialState);
+    fetchMovies(1, searchTerm);
+  }, [searchTerm]);
 
-  return { state, loading, error };
+  //load More movies
+  useEffect(() => {
+    if (!isLoadingMore) return;
+
+    fetchMovies(state.page + 1, searchTerm);
+    setIsLoadingMore(false);
+  }, [isLoadingMore, state, searchTerm]);
+
+  return { state, loading, error, searchTerm, setSearchTerm, setIsLoadingMore };
 };
