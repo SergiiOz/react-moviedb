@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  position: relative;
   background: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 41%,
@@ -10,7 +11,6 @@ export const Wrapper = styled.div`
   background-size: 100%, cover;
   background-position: center;
   height: 600px;
-  position: relative;
   animation: animateHeroImage 1s;
 
   @keyframes animateHeroImage {
