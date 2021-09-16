@@ -9,6 +9,7 @@ import Grid from './Grid/Grid';
 import Spinner from './Spiner/Spinner';
 import BreadCrumb from './BreadCrumb/BreadCrumb';
 import MovieInfo from './MovieInfo/MovieInfo';
+import MovieInfoBar from './MovieInfoBar/MovieInfoBar';
 
 //Hook
 
@@ -32,6 +33,11 @@ const Movie = () => {
       {/* <div> */}
       <BreadCrumb movieTitle={movie.original_title} />
       <MovieInfo movie={movie} />
+      <MovieInfoBar
+        time={movie.runtime}
+        budget={movie.budget}
+        revenue={movie.revenue}
+      />
 
       {/* <h1 style={{ color: 'black' }}>Movie page</h1> */}
       {/* <h2 style={{ color: 'black' }}>"{movie.original_title}"</h2> */}
