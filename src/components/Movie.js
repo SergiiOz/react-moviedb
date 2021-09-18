@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
 //Config
@@ -10,6 +10,7 @@ import Spinner from './Spiner/Spinner';
 import BreadCrumb from './BreadCrumb/BreadCrumb';
 import MovieInfo from './MovieInfo/MovieInfo';
 import MovieInfoBar from './MovieInfoBar/MovieInfoBar';
+import Actor from './Actor/Actor';
 
 //Hook
 
@@ -38,6 +39,23 @@ const Movie = () => {
         budget={movie.budget}
         revenue={movie.revenue}
       />
+
+      <Grid header="Actors">
+        {movie.actors.map((actor) => {
+          return (
+            <Actor
+              key={actor.credit_id}
+              character={actor.character}
+              name={actor.name}
+              imageUrl={
+                actor.profile_path
+                  ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
+                  : NoImage
+              }
+            />
+          );
+        })}
+      </Grid>
 
       {/* <h1 style={{ color: 'black' }}>Movie page</h1> */}
       {/* <h2 style={{ color: 'black' }}>"{movie.original_title}"</h2> */}
