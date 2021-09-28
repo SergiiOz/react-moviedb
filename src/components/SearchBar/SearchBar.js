@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
 // Styles
 import { Wrapper, Content } from './SearchBar.style';
@@ -35,6 +36,10 @@ const SearchBar = ({ setSearchTherm }) => {
       </Content>
     </Wrapper>
   );
+};
+
+SearchBar.propTypes = {
+  setSearchTherm: PropTypes.func,
 };
 
 export default SearchBar;

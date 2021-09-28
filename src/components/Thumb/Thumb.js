@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 //Styles
 import { Image } from './Thumb.style';
 
@@ -16,6 +17,12 @@ const Thumb = (props) => {
       )}
     </div>
   );
+};
+
+Thumb.propTypes = {
+  movieId: PropTypes.number,
+  image: PropTypes.string,
+  clickable: PropTypes.bool,
 };
 
 export default Thumb;

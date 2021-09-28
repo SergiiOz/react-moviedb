@@ -1,4 +1,5 @@
 import { Wrapper, Image } from './Actor.style';
+import PropTypes from 'prop-types';
 
 const Actor = ({ character, name, imageUrl }) => {
   return (
@@ -8,6 +9,12 @@ const Actor = ({ character, name, imageUrl }) => {
       <p>{character}</p>
     </Wrapper>
   );
+};
+
+Actor.propTypes = {
+  name: PropTypes.string,
+  character: PropTypes.string,
+  imageUrl: PropTypes.string,
 };
 
 export default Actor;
